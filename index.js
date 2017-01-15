@@ -6,7 +6,7 @@ const chalk = require('chalk');
 
 const options = {
   fix: false,
-  formatter: 'json',
+  formatter: 'json'
 };
 
 const linter = new Linter(options);
@@ -37,9 +37,6 @@ function test(file, config) {
 
   });
 }
-
-// var linter = new Linter(options);
-// linter.lint('./fixtures/test.ts', );
 
 module.exports = function(configFilePath) {
   describe('tslint', () => {
