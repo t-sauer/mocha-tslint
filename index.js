@@ -26,10 +26,13 @@ function test(file, config) {
       const result = linter.getResult();
 
       if (result.failureCount > 0) {
-        done(new Error(
-          chalk.red('Code did not pass lint rules') +
-          result.failurCount
-        ));
+        const errorMessage = [chalk.red('Code did not pass lint rules')];
+        result.failures.forEach((failure) => {
+          const { character, line } = failure.getStartPosition().getLineAndCharacter();
+          errorMessage.push(`${failure.getFailure()} at line ${line + 1}, character ${character + 1}`);
+        });
+
+        done(new Error(errorMessage.join('\n\t')));
       } else {
         done();
       }
