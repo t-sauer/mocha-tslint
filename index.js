@@ -28,7 +28,9 @@ function test(file, config) {
       if (result.failureCount > 0) {
         const errorMessage = [chalk.red('Code did not pass lint rules')];
         result.failures.forEach((failure) => {
-          const { character, line } = failure.getStartPosition().getLineAndCharacter();
+          const lineAndCharacter = failure.getStartPosition().getLineAndCharacter();
+          const character = lineAndCharacter.character;
+          const line = lineAndCharacter.line;
           errorMessage.push(`${failure.getFailure()} at line ${line + 1}, character ${character + 1}`);
         });
 
