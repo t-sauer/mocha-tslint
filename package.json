@@ -4,7 +4,8 @@
   "description": "Run TSLint as mocha tests",
   "main": "index.js",
   "scripts": {
-    "test": "node tests/runner"
+    "test": "npm run lint && node tests/runner",
+    "lint": "eslint index.js tests/**"
   },
   "keywords": [
     "mocha",
