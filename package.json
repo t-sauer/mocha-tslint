@@ -1,0 +1,31 @@
+{
+  "name": "mocha-tslint",
+  "version": "0.1.0",
+  "description": "Run TSLint as mocha tests",
+  "main": "index.js",
+  "scripts": {
+    "test": "node tests/runner"
+  },
+  "keywords": [
+    "mocha",
+    "tslint",
+    "mochaplugin"
+  ],
+  "author": "Thomas Sauer",
+  "license": "MIT",
+  "dependencies": {
+    "tslint": "^4.3.1",
+    "typescript": "^2.1.5"
+  },
+  "devDependencies": {
+    "@types/node": "^7.0.0",
+    "chalk": "^1.1.0",
+    "es6-promise": "^3.1.2",
+    "glob-all": "^3.0.1",
+    "mocha": "^3.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/t-sauer/mocha-tslint.git"
+  }
+}
