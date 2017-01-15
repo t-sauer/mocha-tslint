@@ -1,13 +1,15 @@
-var Mocha = require('mocha');
-var glob  = require('glob-all');
-var chalk = require('chalk');
+'use strict';
 
-var mocha = new Mocha({
+const Mocha = require('mocha');
+const glob = require('glob-all');
+const chalk = require('chalk');
+
+const mocha = new Mocha({
   timeout: 18000,
   reporter: 'spec'
 });
 
-var root = 'tests/acceptance';
+const root = 'tests/acceptance';
 
 function addFiles(mocha, files) {
   glob.sync(root + files).forEach(mocha.addFile.bind(mocha));
@@ -15,8 +17,8 @@ function addFiles(mocha, files) {
 
 addFiles(mocha, '/**/*Test.js');
 
-mocha.run(function (failures) {
-  process.on('exit', function () {
+mocha.run((failures) => {
+  process.on('exit', () => {
     if (failures === 1) {
       console.log(chalk.red('1 Failing Test'));
     } else if (failures > 1) {

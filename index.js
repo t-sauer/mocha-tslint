@@ -1,35 +1,35 @@
-var Linter = require('tslint').Linter;
-var fs = require('fs');
-var path = require('path');
-var chalk = require('chalk');
+'use strict';
+const Linter = require('tslint').Linter;
+const fs = require('fs');
+const path = require('path');
+const chalk = require('chalk');
 
-var options = {
+const options = {
   fix: false,
   formatter: 'json',
+};
 
-}
-
-var linter = new Linter(options);
+const linter = new Linter(options);
 
 function getFileNames(configFilePath) {
-  var program = Linter.createProgram(configFilePath, path.dirname(configFilePath));
-  var fileNames = Linter.getFileNames(program);
+  const program = Linter.createProgram(configFilePath, path.dirname(configFilePath));
+  const fileNames = Linter.getFileNames(program);
 
   return fileNames;
 }
 
 function test(file, config) {
-  it('should have no errors in ' + file, function(done) {
-    fs.readFile(file, function(err, sourceBuffer) {
-      var source = sourceBuffer.toString();
+  it(`should have no errors in ${file}`, (done) => {
+    fs.readFile(file, (err, sourceBuffer) => {
+      const source = sourceBuffer.toString();
       linter.lint(file, source.toString(), config);
-      var result = linter.getResult();
+      const result = linter.getResult();
 
       if (result.failureCount > 0) {
         done(new Error(
           chalk.red('Code did not pass lint rules') +
           result.failurCount
-        )); 
+        ));
       } else {
         done();
       }
@@ -42,17 +42,17 @@ function test(file, config) {
 // linter.lint('./fixtures/test.ts', );
 
 module.exports = function(configFilePath) {
-  describe('tslint', function() {
-    var tslintConfig = {};
-    var fileNames = getFileNames(configFilePath);
+  describe('tslint', () => {
+    const fileNames = getFileNames(configFilePath);
+    let tslintConfig = {};
 
     try {
-      var config = fs.readFileSync(configFilePath).toString();
+      const config = fs.readFileSync(configFilePath).toString();
       tslintConfig = JSON.parse(config);
-    } catch(e) {}
+    } catch (e) {
+      // continue regardless of error
+    }
 
-    fileNames.forEach(function(file) {
-      test(file, tslintConfig);
-    });
+    fileNames.forEach((file) => test(file, tslintConfig));
   });
-}
+};

@@ -1,11 +1,11 @@
 'use strict';
 
-var Mocha = require('mocha');
-var Promise = require('es6-promise').Promise;
+const Mocha = require('mocha');
+const Promise = require('es6-promise').Promise;
 
 function runTest(file) {
 
-  var mocha = new Mocha({
+  const mocha = new Mocha({
     // For some reason, tests take a long time on Windows (or at least AppVeyor)
     timeout: 2000,
     reporter: 'min'
@@ -13,19 +13,19 @@ function runTest(file) {
 
   mocha.addFile(file);
 
-  var output, originalWrite;
+  let output, originalWrite;
   output = [];
   originalWrite = process.stdout.write;
   process.stdout.write = function(str) {
     output.push(str.toString('utf8'));
   };
 
-  return new Promise(function(resolve) {
-    mocha.run(function (failures) {
+  return new Promise((resolve) => {
+    mocha.run(() => {
       process.stdout.write = originalWrite;
       resolve(output);
     });
-  })
+  });
 }
 
 exports.runTest = runTest;
