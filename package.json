@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npm run lint && node tests/runner",
-    "lint": "eslint index.js tests/**"
+    "lint": "eslint index.js tests/**/*.js tests/*.js"
   },
   "keywords": [
     "mocha",
