@@ -27,4 +27,20 @@ describe('Acceptance: mocha-tslint', () => {
       }
     });
   });
+
+  it('should only test for passed in subfolders', () => {
+    return runTest('tests/lint/subfolderLintTest.js').then((results) => {
+      if (results[3].indexOf('2 passing') === -1) {
+        throw new Error('Did not get two passing tests');
+      }
+    });
+  });
+
+  it('should only test for passed in subfolders with wildcard', () => {
+    return runTest('tests/lint/subfolderWildcardTest.js').then((results) => {
+      if (results[3].indexOf('2 passing') === -1) {
+        throw new Error('Did not get two passing tests');
+      }
+    });
+  });
 });

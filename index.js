@@ -9,18 +9,29 @@ const options = {
   formatter: 'json'
 };
 
-const linter = new Linter(options);
+function getFileNames(configFilePath, pathsToLint) {
+  if (typeof pathsToLint === 'string') {
+    pathsToLint = [pathsToLint];
+  } else if (!pathsToLint) {
+    pathsToLint = [path.dirname(configFilePath)];
+  }
 
-function getFileNames(configFilePath) {
-  const program = Linter.createProgram(configFilePath, path.dirname(configFilePath));
-  const fileNames = Linter.getFileNames(program);
+  let allFiles = [];
 
-  return fileNames;
+  pathsToLint.forEach((pathToLint) => {
+    const program = Linter.createProgram(configFilePath, pathToLint);
+
+    allFiles = allFiles.concat(Linter.getFileNames(program));
+  });
+
+  allFiles = Array.from(new Set(allFiles));
+  return allFiles;
 }
 
 function test(file, config) {
   it(`should have no errors in ${file}`, (done) => {
     fs.readFile(file, (err, sourceBuffer) => {
+      const linter = new Linter(options);
       const source = sourceBuffer.toString();
       linter.lint(file, source.toString(), config);
       const result = linter.getResult();
@@ -43,9 +54,9 @@ function test(file, config) {
   });
 }
 
-module.exports = function(configFilePath) {
+module.exports = function(configFilePath, pathsToLint) {
   describe('tslint', () => {
-    const fileNames = getFileNames(configFilePath);
+    const fileNames = getFileNames(configFilePath, pathsToLint);
     let tslintConfig = {};
 
     try {
