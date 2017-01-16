@@ -7,27 +7,31 @@ Inspired by [mocha-jshint](https://github.com/Muscula/mocha-jshint) and [mocha-e
 
 ## Installation
 
-You can install into your Node.js project as a development dependency with:
+You can install `mocha-tslint` into your Node.js project as a development dependency with:
+
 ```sh
 npm install --save-dev mocha-tslint
 ```
-`mocha-tslint` will install TSLint for itself, so you don't need to worry about
-adding it to your consuming module.
 
-The same is not true for Mocha. You should already have Mocha installed in your
-consuming module.
+`mocha-tslint` requires the consuming module to have `mocha`, `tslint` and `typescript` 
+as dependencies. This way the consuming application can decide which version to 
+use (currently supported versions are TSLint 4.x and Typescript 2.x).
 
 ## Usage
 
 After mocha-tslint is installed, you can use it by creating a test file for
 Mocha and requiring `mocha-tslint` like so:
+
 ```javascript
 var lint = require('mocha-tslint');
 ```
+
 This will return a function with the signature:
+
 ```javascript
 lint(configFilePath)
 ```
+
 where `configFilePath` is the path to your `tslint.json` from your project's top 
 level directory. 
 
