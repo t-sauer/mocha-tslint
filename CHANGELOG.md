@@ -1,5 +1,9 @@
 # Release Notes
 
+## 0.3.0
+
+* Added support for TSLint 5.x
+
 ## 0.2.1
 
 * Added `chalk` to the dependencies
