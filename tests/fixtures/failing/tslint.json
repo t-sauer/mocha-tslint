@@ -1,8 +1,8 @@
 {
-    "rules": {
-        "quotemark": [
-            true,
-            "double"
-        ]
-    }
+  "rules": {
+    "quotemark": [
+      true,
+      "double"
+    ]
+  }
 }

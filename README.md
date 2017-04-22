@@ -16,7 +16,7 @@ npm install --save-dev mocha-tslint
 
 `mocha-tslint` requires the consuming module to have `mocha`, `tslint` and `typescript` 
 as dependencies. This way the consuming application can decide which version to 
-use (currently supported versions are TSLint 4.x and Typescript 2.x).
+use (currently supported versions are TSLint 4.x, 5.x and Typescript 2.x).
 
 ## Usage
 

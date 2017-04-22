@@ -1,5 +1,7 @@
 'use strict';
-const Linter = require('tslint').Linter;
+const TSLint = require('tslint');
+const Linter = TSLint.Linter;
+const Configuration = TSLint.Configuration;
 const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
@@ -36,7 +38,7 @@ function test(file, config) {
       linter.lint(file, source.toString(), config);
       const result = linter.getResult();
 
-      if (result.failureCount > 0) {
+      if (result.failureCount > 0 || result.errorCount > 0) {
         const errorMessage = [chalk.red('Code did not pass lint rules')];
         result.failures.forEach((failure) => {
           const lineAndCharacter = failure.getStartPosition().getLineAndCharacter();
@@ -57,14 +59,7 @@ function test(file, config) {
 module.exports = function(configFilePath, pathsToLint) {
   describe('tslint', () => {
     const fileNames = getFileNames(configFilePath, pathsToLint);
-    let tslintConfig = {};
-
-    try {
-      const config = fs.readFileSync(configFilePath).toString();
-      tslintConfig = JSON.parse(config);
-    } catch (e) {
-      // continue regardless of error
-    }
+    const tslintConfig = Configuration.loadConfigurationFromPath(configFilePath);
 
     fileNames.forEach((file) => test(file, tslintConfig));
   });
