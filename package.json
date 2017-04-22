@@ -27,7 +27,7 @@
     "chalk": "^1.1.0"
   },
   "peerDependencies": {
-    "tslint": "4.x",
+    "tslint": ">= 4",
     "typescript": "2.x"
   },
   "repository": {
