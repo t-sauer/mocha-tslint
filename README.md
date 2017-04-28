@@ -1,5 +1,7 @@
 # mocha-tslint
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/t-sauer/mocha-tslint.svg)](https://greenkeeper.io/)
+
 A simple way to run [TSLint](https://palantir.github.io/tslint/) in your
 [Mocha](http://mochajs.org/) tests without a task runner like Grunt or Gulp.
 
