@@ -19,8 +19,8 @@ describe('Acceptance: mocha-tslint', () => {
       }
 
       const reasonsCount = results[6].split('\n')
-          .filter((line) => line.indexOf('Code did not pass lint rules') !== -1)
-          .length;
+        .filter((line) => line.indexOf('Code did not pass lint rules') !== -1)
+        .length;
 
       if (reasonsCount !== 1) {
         throw new Error(`Counted ${reasonsCount} failure reasons`);
