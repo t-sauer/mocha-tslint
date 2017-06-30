@@ -16,15 +16,15 @@
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^8.0.0",
-    "es6-promise": "^4.0.5",
-    "eslint": "^3.13.1",
+    "es6-promise": "^4.1.1",
+    "eslint": "^4.1.1",
     "glob-all": "^3.0.1",
-    "mocha": "^3.2.0",
-    "tslint": "^5.1.0",
-    "typescript": "^2.1.5"
+    "mocha": "^3.4.2",
+    "tslint": "^5.4.3",
+    "typescript": "^2.4.1"
   },
   "dependencies": {
-    "chalk": "^1.1.0"
+    "chalk": "^2.0.1"
   },
   "peerDependencies": {
     "tslint": ">= 4",
