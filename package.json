@@ -15,7 +15,7 @@
   "author": "Thomas Sauer",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^8.0.0",
+    "@types/node": "^9.6.3",
     "es6-promise": "^4.1.1",
     "eslint": "^4.1.1",
     "glob-all": "^3.0.1",
